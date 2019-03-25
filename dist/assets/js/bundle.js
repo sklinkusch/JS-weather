@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/assets/img/logo.png":
-/*!*********************************!*\
-  !*** ./src/assets/img/logo.png ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "../img/logo.png";
-
-/***/ }),
-
 /***/ "./src/assets/js/index.js":
 /*!********************************!*\
   !*** ./src/assets/js/index.js ***!
@@ -108,29 +97,18 @@ module.exports = "../img/logo.png";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @scss/styles.scss */ "./src/assets/scss/styles.scss");
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _img_logo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @img/logo.png */ "./src/assets/img/logo.png");
-/* harmony import */ var _img_logo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_img_logo_png__WEBPACK_IMPORTED_MODULE_1__);
 
-
-window.addEventListener('click', function (ev) {
-  var elm = ev.target;
-  var selector = elm.getAttribute('data-target');
-  collapse(selector, 'toggle');
-}, false);
-var fnmap = {
-  'toggle': 'toggle',
-  'show': 'add',
-  'hide': 'remove'
-};
-
-var collapse = function collapse(selector, cmd) {
-  document.querySelector(selector).classList[fnmap[cmd]]('show');
-};
-
-var filename = _img_logo_png__WEBPACK_IMPORTED_MODULE_1___default.a.substring(_img_logo_png__WEBPACK_IMPORTED_MODULE_1___default.a.lastIndexOf('/') + 1);
-logo.src = "assets/img/".concat(filename);
-var message = "Hello Webpack";
-console.log(" Message is: ".concat(message));
+var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
+var lat = "52.520008";
+var lng = "13.404954";
+var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(lat, ",").concat(lng);
+fetch(url).then(function (response) {
+  return response.json();
+}).then(function (data) {
+  return console.log(data);
+}).catch(function (error) {
+  return console.log(error);
+});
 
 /***/ }),
 

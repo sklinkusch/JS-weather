@@ -1,24 +1,11 @@
 import "@scss/styles.scss";
-import logoImg from "@img/logo.png";
 
+const secret_key = "ce21c715df0406faa728eb66e0d41cd7";
+const lat = "52.520008";
+const lng = "13.404954";
+const url = `https://api.darksky.net/forecast/${secret_key}/${lat},${lng}`;
 
-window.addEventListener('click', (ev) => {
-    const elm = ev.target;
-    const selector = elm.getAttribute('data-target');
-    collapse(selector, 'toggle');
-}, false);
-
-const fnmap = {
-    'toggle': 'toggle',
-    'show': 'add',
-    'hide': 'remove'
-};
-const collapse = (selector, cmd) => {
-    document.querySelector(selector).classList[fnmap[cmd]]('show');
-}
-
-let filename = logoImg.substring(logoImg.lastIndexOf('/') + 1);
-logo.src = `assets/img/${filename}`;
-
-let message = "Hello Webpack";
-console.log(` Message is: ${message}`);
+fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
