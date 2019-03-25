@@ -162,7 +162,8 @@ function () {
           summary = data.summary,
           temperature = data.temperature,
           pressure = data.pressure,
-          apparentTemperature = data.apparentTemperature;
+          apparentTemperature = data.apparentTemperature,
+          precipProbability = data.precipProbability;
       var container = document.querySelector("#currentWeather");
       container.innerHTML = summary;
       var temperatureContainer = document.querySelector("#currentTemp");
@@ -170,6 +171,8 @@ function () {
       temperatureContainer.innerHTML = "current temperature: ".concat(tempC);
       var feelsContainer = document.querySelector("#feels");
       feelsContainer.innerHTML = "feels like: ".concat(this.getCelsius(apparentTemperature));
+      var precipContainer = document.querySelector("#precip");
+      precipContainer.innerHTML = "precipitation probability: ".concat(this.getPercent(precipProbability));
       var pressureContainer = document.querySelector("#currentPressure");
       pressureContainer.innerHTML = "air pressure: ".concat(pressure, " mbar");
       var imageContainer = document.querySelector("#todayImage");
@@ -225,6 +228,11 @@ function () {
           return "<img src=\"assets/img/sun.jpg\" alt=\"sunny\">";
           break;
       }
+    }
+  }, {
+    key: "getPercent",
+    value: function getPercent(value) {
+      return "".concat((100 * value).toFixed(0), " %");
     }
   }]);
 

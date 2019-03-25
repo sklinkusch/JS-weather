@@ -37,7 +37,14 @@ class Weather {
     });
   }
   evalTodayData(data) {
-    const { icon, summary, temperature, pressure, apparentTemperature } = data;
+    const {
+      icon,
+      summary,
+      temperature,
+      pressure,
+      apparentTemperature,
+      precipProbability
+    } = data;
     const container = document.querySelector("#currentWeather");
     container.innerHTML = summary;
     const temperatureContainer = document.querySelector("#currentTemp");
@@ -46,6 +53,10 @@ class Weather {
     const feelsContainer = document.querySelector("#feels");
     feelsContainer.innerHTML = `feels like: ${this.getCelsius(
       apparentTemperature
+    )}`;
+    const precipContainer = document.querySelector("#precip");
+    precipContainer.innerHTML = `precipitation probability: ${this.getPercent(
+      precipProbability
     )}`;
     const pressureContainer = document.querySelector("#currentPressure");
     pressureContainer.innerHTML = `air pressure: ${pressure} mbar`;
@@ -90,6 +101,9 @@ class Weather {
         return `<img src="assets/img/sun.jpg" alt="sunny">`;
         break;
     }
+  }
+  getPercent(value) {
+    return `${(100 * value).toFixed(0)} %`;
   }
 }
 
