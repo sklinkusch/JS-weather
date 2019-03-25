@@ -11422,7 +11422,7 @@ h1 {
 .col-md-4 {
   margin-bottom: 40px;
   /* padding-bottom: 50px;*/
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid grey;
   display: -webkit-box;
   display: -ms-flexbox;
