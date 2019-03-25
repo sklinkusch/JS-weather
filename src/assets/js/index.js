@@ -17,6 +17,8 @@ class Weather {
     temperatureContainer.innerHTML = tempC;
     const pressureContainer = document.querySelector("#currentPressure");
     pressureContainer.innerHTML = `${pressure} mbar`;
+    const imageContainer = document.querySelector("#todayImage");
+    imageContainer.innerHTML = this.getImage(icon);
   }
   getCelsius(fahrenheit) {
     const celsius = ((fahrenheit - 32) * 5) / 9;
@@ -34,6 +36,13 @@ class Weather {
         console.log(data);
       })
       .catch(error => console.log(error));
+  }
+  getImage(type) {
+    switch (type) {
+      case "rain":
+        return `<img src="assets/img/rain.jpg" alt="rain">`;
+        break;
+    }
   }
 }
 

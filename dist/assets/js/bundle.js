@@ -132,6 +132,8 @@ function () {
       temperatureContainer.innerHTML = tempC;
       var pressureContainer = document.querySelector("#currentPressure");
       pressureContainer.innerHTML = "".concat(pressure, " mbar");
+      var imageContainer = document.querySelector("#todayImage");
+      imageContainer.innerHTML = this.getImage(icon);
     }
   }, {
     key: "getCelsius",
@@ -155,6 +157,15 @@ function () {
       }).catch(function (error) {
         return console.log(error);
       });
+    }
+  }, {
+    key: "getImage",
+    value: function getImage(type) {
+      switch (type) {
+        case "rain":
+          return "<img src=\"assets/img/rain.jpg\" alt=\"rain\">";
+          break;
+      }
     }
   }]);
 
