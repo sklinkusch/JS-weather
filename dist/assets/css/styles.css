@@ -11412,5 +11412,10 @@ h1 {
 #todayImage img {
   width: 100%; }
 
+[id^="imag-"] {
+  width: 90%; }
+  [id^="imag-"] img {
+    width: 90%; }
+
 
 /*# sourceMappingURL=styles.css.map*/

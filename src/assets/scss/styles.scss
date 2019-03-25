@@ -24,3 +24,9 @@ h1 {
 #todayImage img {
   width: 100%;
 }
+[id^="imag-"] {
+  width: 90%;
+  img {
+    width: 90%;
+  }
+}
