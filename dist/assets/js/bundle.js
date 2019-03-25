@@ -209,27 +209,43 @@ function () {
     value: function getImage(type) {
       switch (type) {
         case "rain":
-          return "<img src=\"assets/img/rain.jpg\" alt=\"rain\">";
+          return "<img src=\"assets/img/rain.jpg\" alt=\"rain\" title=\"rain\">";
           break;
 
         case "sleet":
-          return "<img src=\"assets/img/sleet.jpg\" alt=\"sleet\">";
+          return "<img src=\"assets/img/sleet.jpg\" alt=\"sleet\" title=\"sleet\">";
           break;
 
         case "cloudy":
+          return "<img src=\"assets/img/clouds.jpg\" alt=\"cloudy\" title=\"cloudy\">";
+          break;
+
         case "partly cloudy":
+          return "<img src=\"assets/img/clouds.jpg\" alt=\"partly cloudy title=\"partly cloudy\">";
+          break;
+
         case "partly-cloudy-day":
+          return "<img src=\"assets/img/clouds.jpg\" alt=\"partly cloudy day\" title=\"partly cloudy day\">";
+          break;
+
         case "partly-cloudy-night":
-          return "<img src=\"assets/img/clouds.jpg\" alt=\"cloudy\">";
+          return "<img src=\"assets/img/clouds.jpg\" alt=\"partly cloudy night\" title=\"partly cloudy night\">";
           break;
 
         case "clear-day":
-          return "<img src=\"assets/img/clear.jpg\" alt=\"clear\">";
+          return "<img src=\"assets/img/clear.jpg\" alt=\"clear day\" title=\"clear day\">";
           break;
 
         case "sun":
-          return "<img src=\"assets/img/sun.jpg\" alt=\"sunny\">";
+          return "<img src=\"assets/img/sun.jpg\" alt=\"sun\" title=\"sun\">";
           break;
+
+        case "thunderstorm":
+          return "<img src=\"assets/img/thunderstorm.jpg\" alt=\"thunderstorm\" title=\"thunderstorm\">";
+          break;
+
+        case "snow":
+          return "<img src=\"assets/img/snow.jpg\" alt=\"snow\" title=\"snow\">";
       }
     }
   }, {
