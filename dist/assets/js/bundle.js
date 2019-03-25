@@ -161,15 +161,17 @@ function () {
       var icon = data.icon,
           summary = data.summary,
           temperature = data.temperature,
-          pressure = data.pressure;
+          pressure = data.pressure,
+          apparentTemperature = data.apparentTemperature;
       var container = document.querySelector("#currentWeather");
       container.innerHTML = summary;
       var temperatureContainer = document.querySelector("#currentTemp");
-      var tempF = temperature;
-      var tempC = this.getCelsius(tempF);
-      temperatureContainer.innerHTML = tempC;
+      var tempC = this.getCelsius(temperature);
+      temperatureContainer.innerHTML = "current temperature: ".concat(tempC);
+      var feelsContainer = document.querySelector("#feels");
+      feelsContainer.innerHTML = "feels like: ".concat(this.getCelsius(apparentTemperature));
       var pressureContainer = document.querySelector("#currentPressure");
-      pressureContainer.innerHTML = "".concat(pressure, " mbar");
+      pressureContainer.innerHTML = "air pressure: ".concat(pressure, " mbar");
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }

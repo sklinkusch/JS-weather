@@ -37,15 +37,18 @@ class Weather {
     });
   }
   evalTodayData(data) {
-    const { icon, summary, temperature, pressure } = data;
+    const { icon, summary, temperature, pressure, apparentTemperature } = data;
     const container = document.querySelector("#currentWeather");
     container.innerHTML = summary;
     const temperatureContainer = document.querySelector("#currentTemp");
-    const tempF = temperature;
-    const tempC = this.getCelsius(tempF);
-    temperatureContainer.innerHTML = tempC;
+    const tempC = this.getCelsius(temperature);
+    temperatureContainer.innerHTML = `current temperature: ${tempC}`;
+    const feelsContainer = document.querySelector("#feels");
+    feelsContainer.innerHTML = `feels like: ${this.getCelsius(
+      apparentTemperature
+    )}`;
     const pressureContainer = document.querySelector("#currentPressure");
-    pressureContainer.innerHTML = `${pressure} mbar`;
+    pressureContainer.innerHTML = `air pressure: ${pressure} mbar`;
     const imageContainer = document.querySelector("#todayImage");
     imageContainer.innerHTML = this.getImage(icon);
   }
