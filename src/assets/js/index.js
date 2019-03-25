@@ -19,11 +19,21 @@ class Weather {
       const sumCont = document.querySelector(`#summ-${i}`);
       const maxCont = document.querySelector(`#high-${i}`);
       const minCont = document.querySelector(`#low-${i}`);
-      const { icon, summary, temperatureMax, temperatureMin } = day;
+      const precCont = document.querySelector(`#prec-${i}`);
+      const {
+        icon,
+        summary,
+        temperatureMax,
+        temperatureMin,
+        precipProbability
+      } = day;
       imgCont.innerHTML = this.getImage(icon);
       sumCont.innerHTML = summary;
       maxCont.innerHTML = `maximum: ${this.getCelsius(temperatureMax)}`;
       minCont.innerHTML = `minimum: ${this.getCelsius(temperatureMin)}`;
+      precCont.innerHTML = `precipitation probability: ${this.getPercent(
+        precipProbability
+      )}`;
       if (i != 0 && i != 1) {
         const currentDate = new Date(
           new Date().getTime() + i * 24 * 60 * 60 * 1000

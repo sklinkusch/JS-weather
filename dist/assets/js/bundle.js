@@ -136,14 +136,17 @@ function () {
         var sumCont = document.querySelector("#summ-".concat(i));
         var maxCont = document.querySelector("#high-".concat(i));
         var minCont = document.querySelector("#low-".concat(i));
+        var precCont = document.querySelector("#prec-".concat(i));
         var icon = day.icon,
             summary = day.summary,
             temperatureMax = day.temperatureMax,
-            temperatureMin = day.temperatureMin;
+            temperatureMin = day.temperatureMin,
+            precipProbability = day.precipProbability;
         imgCont.innerHTML = _this.getImage(icon);
         sumCont.innerHTML = summary;
         maxCont.innerHTML = "maximum: ".concat(_this.getCelsius(temperatureMax));
         minCont.innerHTML = "minimum: ".concat(_this.getCelsius(temperatureMin));
+        precCont.innerHTML = "precipitation probability: ".concat(_this.getPercent(precipProbability));
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
