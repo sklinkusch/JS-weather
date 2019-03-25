@@ -97,18 +97,71 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @scss/styles.scss */ "./src/assets/scss/styles.scss");
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
-var lat = "52.520008";
-var lng = "13.404954";
-var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(lat, ",").concat(lng);
-fetch(url).then(function (response) {
-  return response.json();
-}).then(function (data) {
-  return console.log(data);
-}).catch(function (error) {
-  return console.log(error);
-});
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Weather =
+/*#__PURE__*/
+function () {
+  function Weather(lat, lng) {
+    _classCallCheck(this, Weather);
+
+    this.lat = lat;
+    this.lng = lng;
+    this.getData();
+  }
+
+  _createClass(Weather, [{
+    key: "evalData",
+    value: function evalData(data) {
+      var currently = data.currently;
+      var icon = currently.icon,
+          summary = currently.summary,
+          temperature = currently.temperature,
+          pressure = currently.pressure;
+      var container = document.querySelector("#currentWeather");
+      container.innerHTML = summary;
+      var temperatureContainer = document.querySelector("#currentTemp");
+      var tempF = temperature;
+      var tempC = this.getCelsius(tempF);
+      temperatureContainer.innerHTML = tempC;
+      var pressureContainer = document.querySelector("#currentPressure");
+      pressureContainer.innerHTML = "".concat(pressure, " mbar");
+    }
+  }, {
+    key: "getCelsius",
+    value: function getCelsius(fahrenheit) {
+      var celsius = (fahrenheit - 32) * 5 / 9;
+      return "".concat(celsius.toFixed(1), " \xB0C");
+    }
+  }, {
+    key: "getData",
+    value: function getData() {
+      var _this = this;
+
+      var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
+      var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
+      fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        _this.evalData(data);
+
+        console.log(data);
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  }]);
+
+  return Weather;
+}();
+
+var myWeather = new Weather("52.520008", "13.404954");
 
 /***/ }),
 
