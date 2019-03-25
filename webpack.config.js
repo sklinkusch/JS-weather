@@ -3,17 +3,16 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
-
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 module.exports = {
   entry: "./src/assets/js/index.js",
   output: {
-    path: path.resolve(__dirname, "dist/"),
+    path: path.resolve(__dirname, "docs/"),
     filename: "assets/js/bundle.js",
     publicPath: ""
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   optimization: {
     minimizer: [new UglifyJsPlugin(), new OptimizeCSSAssetsPlugin()]
   },
@@ -31,14 +30,21 @@ module.exports = {
       //style and css extract
       {
         test: [/.css$|.scss$/],
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader", {
-          loader: 'postcss-loader',
-          options: {
-            plugins: () => [require('autoprefixer')({
-              'browsers': ['> 1%', 'last 2 versions']
-            })],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              plugins: () => [
+                require("autoprefixer")({
+                  browsers: ["> 1%", "last 2 versions"]
+                })
+              ]
+            }
           }
-        }]
+        ]
       },
       //image file loader
       {
@@ -49,7 +55,7 @@ module.exports = {
             options: {
               name: "[name].[ext]",
               outputPath: "assets/img/",
-              publicPath: '../img/'
+              publicPath: "../img/"
             }
           }
         ]
@@ -57,27 +63,26 @@ module.exports = {
       //fonts
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'assets/fonts/',
-            publicPath: '../fonts'
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/fonts/",
+              publicPath: "../fonts"
+            }
           }
-        }]
+        ]
       }
     ]
   },
   resolve: {
     alias: {
-      '@scss': path.resolve(__dirname, 'src/assets/scss'),
-      '@img': path.resolve(__dirname, 'src/assets/img'),
-      '@': path.resolve(__dirname, 'src')
+      "@scss": path.resolve(__dirname, "src/assets/scss"),
+      "@img": path.resolve(__dirname, "src/assets/img"),
+      "@": path.resolve(__dirname, "src")
     },
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'src')
-    ]
+    modules: ["node_modules", path.resolve(__dirname, "src")]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -93,9 +98,9 @@ module.exports = {
       }
     }),
     new BrowserSyncPlugin({
-      host: 'localhost',
+      host: "localhost",
       port: 3000,
-      server: { baseDir: ['dist'] }
+      server: { baseDir: ["docs"] }
     })
   ],
   performance: {
