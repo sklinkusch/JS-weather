@@ -13,20 +13,28 @@ class Weather {
   }
   evalFollowing(daily) {
     const { data } = daily;
-    for (let i = 0; i < 6; i++) {
-      const imgSel = `#imag-${i}`;
-      const imgCont = document.querySelector(imgSel);
-      imgCont.innerHTML = this.getImage(data[i].icon);
-      const sumSel = `#summ-${i}`;
-      const sumCont = document.querySelector(sumSel);
-      sumCont.innerHTML = data[i].summary;
-      const maxSel = `#high-${i}`;
-      const maxCont = document.querySelector(maxSel);
-      maxCont.innerHTML = `maximum: ${this.getCelsius(data[i].temperatureMax)}`;
-      const minSel = `#low-${i}`;
-      const minCont = document.querySelector(minSel);
-      minCont.innerHTML = `minimum: ${this.getCelsius(data[i].temperatureMin)}`;
-    }
+    const date = new Date();
+    data.forEach((day, i) => {
+      const imgCont = document.querySelector(`#imag-${i}`);
+      const sumCont = document.querySelector(`#summ-${i}`);
+      const maxCont = document.querySelector(`#high-${i}`);
+      const minCont = document.querySelector(`#low-${i}`);
+      const { icon, summary, temperatureMax, temperatureMin } = day;
+      imgCont.innerHTML = this.getImage(icon);
+      sumCont.innerHTML = summary;
+      maxCont.innerHTML = `maximum: ${this.getCelsius(temperatureMax)}`;
+      minCont.innerHTML = `minimum: ${this.getCelsius(temperatureMin)}`;
+      if (i != 0 && i != 1) {
+        const currentDate = new Date(
+          new Date().getTime() + i * 24 * 60 * 60 * 1000
+        );
+        const currentDay = currentDate.getDate();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentYear = currentDate.getFullYear();
+        const dateCont = document.querySelector(`#day-${i}`);
+        dateCont.innerHTML = `${currentDay}/${currentMonth}/${currentYear}`;
+      }
+    });
   }
   evalTodayData(data) {
     const { icon, summary, temperature, pressure } = data;
@@ -69,6 +77,7 @@ class Weather {
       case "cloudy":
       case "partly cloudy":
       case "partly-cloudy-day":
+      case "partly-cloudy-night":
         return `<img src="assets/img/clouds.jpg" alt="cloudy">`;
         break;
       case "clear-day":

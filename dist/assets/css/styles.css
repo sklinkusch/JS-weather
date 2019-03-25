@@ -11418,5 +11418,15 @@ h1 {
   [id^="imag-"] img {
     width: 90%; }
 
+.col-md-4 {
+  margin-bottom: 40px; }
+
+ul {
+  margin-left: 0px;
+  padding-left: 0; }
+
+ul li {
+  list-style-position: inside; }
+
 
 /*# sourceMappingURL=styles.css.map*/

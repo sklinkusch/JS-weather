@@ -127,22 +127,33 @@ function () {
   }, {
     key: "evalFollowing",
     value: function evalFollowing(daily) {
-      var data = daily.data;
+      var _this = this;
 
-      for (var i = 0; i < 6; i++) {
-        var imgSel = "#imag-".concat(i);
-        var imgCont = document.querySelector(imgSel);
-        imgCont.innerHTML = this.getImage(data[i].icon);
-        var sumSel = "#summ-".concat(i);
-        var sumCont = document.querySelector(sumSel);
-        sumCont.innerHTML = data[i].summary;
-        var maxSel = "#high-".concat(i);
-        var maxCont = document.querySelector(maxSel);
-        maxCont.innerHTML = "maximum: ".concat(this.getCelsius(data[i].temperatureMax));
-        var minSel = "#low-".concat(i);
-        var minCont = document.querySelector(minSel);
-        minCont.innerHTML = "minimum: ".concat(this.getCelsius(data[i].temperatureMin));
-      }
+      var data = daily.data;
+      var date = new Date();
+      data.forEach(function (day, i) {
+        var imgCont = document.querySelector("#imag-".concat(i));
+        var sumCont = document.querySelector("#summ-".concat(i));
+        var maxCont = document.querySelector("#high-".concat(i));
+        var minCont = document.querySelector("#low-".concat(i));
+        var icon = day.icon,
+            summary = day.summary,
+            temperatureMax = day.temperatureMax,
+            temperatureMin = day.temperatureMin;
+        imgCont.innerHTML = _this.getImage(icon);
+        sumCont.innerHTML = summary;
+        maxCont.innerHTML = "maximum: ".concat(_this.getCelsius(temperatureMax));
+        minCont.innerHTML = "minimum: ".concat(_this.getCelsius(temperatureMin));
+
+        if (i != 0 && i != 1) {
+          var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
+          var currentDay = currentDate.getDate();
+          var currentMonth = currentDate.getMonth() + 1;
+          var currentYear = currentDate.getFullYear();
+          var dateCont = document.querySelector("#day-".concat(i));
+          dateCont.innerHTML = "".concat(currentDay, "/").concat(currentMonth, "/").concat(currentYear);
+        }
+      });
     }
   }, {
     key: "evalTodayData",
@@ -171,14 +182,14 @@ function () {
   }, {
     key: "getData",
     value: function getData() {
-      var _this = this;
+      var _this2 = this;
 
       var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
       var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        _this.evalData(data);
+        _this2.evalData(data);
 
         console.log(data);
       }).catch(function (error) {
@@ -200,6 +211,7 @@ function () {
         case "cloudy":
         case "partly cloudy":
         case "partly-cloudy-day":
+        case "partly-cloudy-night":
           return "<img src=\"assets/img/clouds.jpg\" alt=\"cloudy\">";
           break;
 
