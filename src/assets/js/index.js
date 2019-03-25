@@ -13,7 +13,7 @@ class Weather {
   }
   evalFollowing(daily) {
     const { data } = daily;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 6; i++) {
       const imgSel = `#imag-${i}`;
       const imgCont = document.querySelector(imgSel);
       imgCont.innerHTML = this.getImage(data[i].icon);
@@ -70,6 +70,9 @@ class Weather {
       case "partly cloudy":
       case "partly-cloudy-day":
         return `<img src="assets/img/clouds.jpg" alt="cloudy">`;
+        break;
+      case "clear-day":
+        return `<img src="assets/img/clear.jpg" alt="clear">`;
         break;
       case "sun":
         return `<img src="assets/img/sun.jpg" alt="sunny">`;

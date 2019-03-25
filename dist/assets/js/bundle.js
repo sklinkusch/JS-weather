@@ -129,7 +129,7 @@ function () {
     value: function evalFollowing(daily) {
       var data = daily.data;
 
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 6; i++) {
         var imgSel = "#imag-".concat(i);
         var imgCont = document.querySelector(imgSel);
         imgCont.innerHTML = this.getImage(data[i].icon);
@@ -201,6 +201,10 @@ function () {
         case "partly cloudy":
         case "partly-cloudy-day":
           return "<img src=\"assets/img/clouds.jpg\" alt=\"cloudy\">";
+          break;
+
+        case "clear-day":
+          return "<img src=\"assets/img/clear.jpg\" alt=\"clear\">";
           break;
 
         case "sun":

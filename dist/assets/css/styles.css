@@ -11413,7 +11413,8 @@ h1 {
   width: 100%; }
 
 [id^="imag-"] {
-  width: 90%; }
+  width: 90%;
+  height: 50%; }
   [id^="imag-"] img {
     width: 90%; }
 
