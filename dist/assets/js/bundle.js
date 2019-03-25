@@ -119,11 +119,38 @@ function () {
   _createClass(Weather, [{
     key: "evalData",
     value: function evalData(data) {
-      var currently = data.currently;
-      var icon = currently.icon,
-          summary = currently.summary,
-          temperature = currently.temperature,
-          pressure = currently.pressure;
+      var currently = data.currently,
+          daily = data.daily;
+      this.evalTodayData(currently);
+      this.evalFollowing(daily);
+    }
+  }, {
+    key: "evalFollowing",
+    value: function evalFollowing(daily) {
+      var data = daily.data;
+
+      for (var i = 0; i < 3; i++) {
+        var imgSel = "#imag-".concat(i);
+        var imgCont = document.querySelector(imgSel);
+        imgCont.innerHTML = this.getImage(data[i].icon);
+        var sumSel = "#summ-".concat(i);
+        var sumCont = document.querySelector(sumSel);
+        sumCont.innerHTML = data[i].summary;
+        var maxSel = "#high-".concat(i);
+        var maxCont = document.querySelector(maxSel);
+        maxCont.innerHTML = "maximum: ".concat(this.getCelsius(data[i].temperatureMax));
+        var minSel = "#low-".concat(i);
+        var minCont = document.querySelector(minSel);
+        minCont.innerHTML = "minimum: ".concat(this.getCelsius(data[i].temperatureMin));
+      }
+    }
+  }, {
+    key: "evalTodayData",
+    value: function evalTodayData(data) {
+      var icon = data.icon,
+          summary = data.summary,
+          temperature = data.temperature,
+          pressure = data.pressure;
       var container = document.querySelector("#currentWeather");
       container.innerHTML = summary;
       var temperatureContainer = document.querySelector("#currentTemp");
@@ -139,7 +166,7 @@ function () {
     key: "getCelsius",
     value: function getCelsius(fahrenheit) {
       var celsius = (fahrenheit - 32) * 5 / 9;
-      return "".concat(celsius.toFixed(1), " \xB0C");
+      return "".concat(celsius.toFixed(0), " \xB0C");
     }
   }, {
     key: "getData",
@@ -164,6 +191,20 @@ function () {
       switch (type) {
         case "rain":
           return "<img src=\"assets/img/rain.jpg\" alt=\"rain\">";
+          break;
+
+        case "sleet":
+          return "<img src=\"assets/img/sleet.jpg\" alt=\"sleet\">";
+          break;
+
+        case "cloudy":
+        case "partly cloudy":
+        case "partly-cloudy-day":
+          return "<img src=\"assets/img/clouds.jpg\" alt=\"cloudy\">";
+          break;
+
+        case "sun":
+          return "<img src=\"assets/img/sun.jpg\" alt=\"sunny\">";
           break;
       }
     }
