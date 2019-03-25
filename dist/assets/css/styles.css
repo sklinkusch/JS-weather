@@ -11416,7 +11416,8 @@ h1 {
   width: 90%;
   height: 50%; }
   [id^="imag-"] img {
-    width: 90%; }
+    width: 90%;
+    height: 90%; }
 
 .col-md-4 {
   margin-bottom: 40px; }
