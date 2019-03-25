@@ -7,6 +7,16 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
+.sk-img-container {
+  background-image: url("../img/weather.jpg");
+  background-size: cover;
+}
+.sk-w100vw {
+  width: 100%;
+}
+.sk-h60vw {
+  height: 60vw;
+}
 h1 {
   color: black;
 }

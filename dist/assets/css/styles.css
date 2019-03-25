@@ -11387,6 +11387,16 @@ readers do not read off random characters that represent icons */
 .fab {
   font-family: 'Font Awesome 5 Brands'; }
 
+.sk-img-container {
+  background-image: url(../img/weather.jpg);
+  background-size: cover; }
+
+.sk-w100vw {
+  width: 100%; }
+
+.sk-h60vw {
+  height: 60vw; }
+
 h1 {
   color: black; }
 
