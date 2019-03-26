@@ -2,8 +2,46 @@ import "@scss/styles.scss";
 
 class Weather {
   constructor(lat, lng) {
-    this.lat = lat;
-    this.lng = lng;
+    this._lat = lat;
+    this._lng = lng;
+    this.getData();
+    this.addEventListeners();
+  }
+  addEventListeners() {
+    const dropdown = document.querySelector("#placeselect");
+    dropdown.addEventListener("input", event => {
+      const myValue = event.target.value;
+      switch (myValue) {
+        case "berlin":
+          this.lat = "52.520008";
+          this.lng = "13.404954";
+          break;
+        case "beijing":
+          this.lat = "39.933333";
+          this.lng = "116.383333";
+          break;
+        case "london":
+          this.lat = "51.50939";
+          this.lng = "-0.11832";
+          break;
+        case "paris":
+          this.lat = "48.856667";
+          this.lng = "2.351667";
+          break;
+        case "newyork":
+          this.lat = "40.712778";
+          this.lng = "-74.005833";
+          break;
+        case "rio":
+          this.lat = "-22.908333";
+          this.lng = "-43.196389";
+          break;
+        case "rome":
+          this.lat = "41.883333";
+          this.lng = "12.483333";
+          break;
+      }
+    });
     this.getData();
   }
   evalData(data) {
@@ -83,9 +121,10 @@ class Weather {
   }
   getData() {
     const secret_key = "ce21c715df0406faa728eb66e0d41cd7";
-    const url = `https://api.darksky.net/forecast/${secret_key}/${this.lat},${
-      this.lng
-    }`;
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const url = `${proxy}https://api.darksky.net/forecast/${secret_key}/${
+      this.lat
+    },${this.lng}`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -136,6 +175,18 @@ class Weather {
   }
   getPercent(value) {
     return `${(100 * value).toFixed(0)} %`;
+  }
+  get lat() {
+    return this._lat;
+  }
+  set lat(newLat) {
+    this._lat = newLat;
+  }
+  get lng() {
+    return this._lng;
+  }
+  set lng(newLng) {
+    this._lng = newLng;
   }
 }
 

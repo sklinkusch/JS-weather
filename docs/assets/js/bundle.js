@@ -111,12 +111,61 @@ function () {
   function Weather(lat, lng) {
     _classCallCheck(this, Weather);
 
-    this.lat = lat;
-    this.lng = lng;
+    this._lat = lat;
+    this._lng = lng;
     this.getData();
+    this.addEventListeners();
   }
 
   _createClass(Weather, [{
+    key: "addEventListeners",
+    value: function addEventListeners() {
+      var _this = this;
+
+      var dropdown = document.querySelector("#placeselect");
+      dropdown.addEventListener("input", function (event) {
+        var myValue = event.target.value;
+
+        switch (myValue) {
+          case "berlin":
+            _this.lat = "52.520008";
+            _this.lng = "13.404954";
+            break;
+
+          case "beijing":
+            _this.lat = "39.933333";
+            _this.lng = "116.383333";
+            break;
+
+          case "london":
+            _this.lat = "51.50939";
+            _this.lng = "-0.11832";
+            break;
+
+          case "paris":
+            _this.lat = "48.856667";
+            _this.lng = "2.351667";
+            break;
+
+          case "newyork":
+            _this.lat = "40.712778";
+            _this.lng = "-74.005833";
+            break;
+
+          case "rio":
+            _this.lat = "-22.908333";
+            _this.lng = "-43.196389";
+            break;
+
+          case "rome":
+            _this.lat = "41.883333";
+            _this.lng = "12.483333";
+            break;
+        }
+      });
+      this.getData();
+    }
+  }, {
     key: "evalData",
     value: function evalData(data) {
       var currently = data.currently,
@@ -127,7 +176,7 @@ function () {
   }, {
     key: "evalFollowing",
     value: function evalFollowing(daily) {
-      var _this = this;
+      var _this2 = this;
 
       var data = daily.data;
       var date = new Date();
@@ -142,11 +191,11 @@ function () {
             temperatureMax = day.temperatureMax,
             temperatureMin = day.temperatureMin,
             precipProbability = day.precipProbability;
-        imgCont.innerHTML = _this.getImage(icon);
+        imgCont.innerHTML = _this2.getImage(icon);
         sumCont.innerHTML = summary;
-        maxCont.innerHTML = "maximum: ".concat(_this.getCelsius(temperatureMax));
-        minCont.innerHTML = "minimum: ".concat(_this.getCelsius(temperatureMin));
-        precCont.innerHTML = "precipitation probability: ".concat(_this.getPercent(precipProbability));
+        maxCont.innerHTML = "maximum: ".concat(_this2.getCelsius(temperatureMax));
+        minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
+        precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
@@ -195,14 +244,15 @@ function () {
   }, {
     key: "getData",
     value: function getData() {
-      var _this2 = this;
+      var _this3 = this;
 
       var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
-      var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
+      var proxy = "https://cors-anywhere.herokuapp.com/";
+      var url = "".concat(proxy, "https://api.darksky.net/forecast/").concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        _this2.evalData(data);
+        _this3.evalData(data);
 
         console.log(data);
       }).catch(function (error) {
@@ -266,6 +316,22 @@ function () {
     key: "getPercent",
     value: function getPercent(value) {
       return "".concat((100 * value).toFixed(0), " %");
+    }
+  }, {
+    key: "lat",
+    get: function get() {
+      return this._lat;
+    },
+    set: function set(newLat) {
+      this._lat = newLat;
+    }
+  }, {
+    key: "lng",
+    get: function get() {
+      return this._lng;
+    },
+    set: function set(newLng) {
+      this._lng = newLng;
     }
   }]);
 
