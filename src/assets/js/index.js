@@ -1,7 +1,8 @@
 import "@scss/styles.scss";
 
 class Weather {
-  constructor(lat, lng) {
+  constructor(place, lat, lng) {
+    this._place = place;
     this._lat = lat;
     this._lng = lng;
     this.getData();
@@ -13,38 +14,47 @@ class Weather {
       const myValue = event.target.value;
       switch (myValue) {
         case "berlin":
+          this.place = "Berlin";
           this.lat = "52.520008";
           this.lng = "13.404954";
           break;
         case "beijing":
+          this.place = "Beijing";
           this.lat = "39.933333";
           this.lng = "116.383333";
           break;
         case "london":
+          this.place = "London";
           this.lat = "51.50939";
           this.lng = "-0.11832";
           break;
         case "paris":
+          this.place = "Paris";
           this.lat = "48.856667";
           this.lng = "2.351667";
           break;
         case "newyork":
+          this.place = "New York City";
           this.lat = "40.712778";
           this.lng = "-74.005833";
           break;
         case "rio":
+          this.place = "Rio de Janeiro";
           this.lat = "-22.908333";
           this.lng = "-43.196389";
           break;
         case "rome":
+          this.place = "Rome";
           this.lat = "41.883333";
           this.lng = "12.483333";
           break;
       }
+      this.getData();
     });
-    this.getData();
   }
   evalData(data) {
+    const placeCont = document.querySelector("#placeid");
+    placeCont.innerHTML = this.place;
     const { currently, daily } = data;
     this.evalTodayData(currently);
     this.evalFollowing(daily);
@@ -122,14 +132,14 @@ class Weather {
   getData() {
     const secret_key = "ce21c715df0406faa728eb66e0d41cd7";
     const proxy = "https://cors-anywhere.herokuapp.com/";
-    const url = `${proxy}https://api.darksky.net/forecast/${secret_key}/${
-      this.lat
-    },${this.lng}`;
+    const url = `https://api.darksky.net/forecast/${secret_key}/${this.lat},${
+      this.lng
+    }`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.evalData(data);
         console.log(data);
+        this.evalData(data);
       })
       .catch(error => console.log(error));
   }
@@ -155,6 +165,9 @@ class Weather {
         break;
       case "clear-day":
         return `<img src="assets/img/clear.jpg" alt="clear day" title="clear day">`;
+        break;
+      case "clear-night":
+        return `<img src="assets/img/clear.jpg" alt="clear night" title="clear night">`;
         break;
       case "sun":
         return `<img src="assets/img/sun.jpg" alt="sun" title="sun">`;
@@ -188,6 +201,12 @@ class Weather {
   set lng(newLng) {
     this._lng = newLng;
   }
+  get place() {
+    return this._place;
+  }
+  set place(newPlace) {
+    this._place = newPlace;
+  }
 }
 
-const myWeather = new Weather("52.520008", "13.404954");
+const myWeather = new Weather("Berlin", "52.520008", "13.404954");

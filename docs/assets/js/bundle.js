@@ -108,9 +108,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Weather =
 /*#__PURE__*/
 function () {
-  function Weather(lat, lng) {
+  function Weather(place, lat, lng) {
     _classCallCheck(this, Weather);
 
+    this._place = place;
     this._lat = lat;
     this._lng = lng;
     this.getData();
@@ -128,46 +129,56 @@ function () {
 
         switch (myValue) {
           case "berlin":
+            _this.place = "Berlin";
             _this.lat = "52.520008";
             _this.lng = "13.404954";
             break;
 
           case "beijing":
+            _this.place = "Beijing";
             _this.lat = "39.933333";
             _this.lng = "116.383333";
             break;
 
           case "london":
+            _this.place = "London";
             _this.lat = "51.50939";
             _this.lng = "-0.11832";
             break;
 
           case "paris":
+            _this.place = "Paris";
             _this.lat = "48.856667";
             _this.lng = "2.351667";
             break;
 
           case "newyork":
+            _this.place = "New York City";
             _this.lat = "40.712778";
             _this.lng = "-74.005833";
             break;
 
           case "rio":
+            _this.place = "Rio de Janeiro";
             _this.lat = "-22.908333";
             _this.lng = "-43.196389";
             break;
 
           case "rome":
+            _this.place = "Rome";
             _this.lat = "41.883333";
             _this.lng = "12.483333";
             break;
         }
+
+        _this.getData();
       });
-      this.getData();
     }
   }, {
     key: "evalData",
     value: function evalData(data) {
+      var placeCont = document.querySelector("#placeid");
+      placeCont.innerHTML = this.place;
       var currently = data.currently,
           daily = data.daily;
       this.evalTodayData(currently);
@@ -248,13 +259,13 @@ function () {
 
       var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
       var proxy = "https://cors-anywhere.herokuapp.com/";
-      var url = "".concat(proxy, "https://api.darksky.net/forecast/").concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
+      var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        _this3.evalData(data);
-
         console.log(data);
+
+        _this3.evalData(data);
       }).catch(function (error) {
         return console.log(error);
       });
@@ -289,6 +300,10 @@ function () {
 
         case "clear-day":
           return "<img src=\"assets/img/clear.jpg\" alt=\"clear day\" title=\"clear day\">";
+          break;
+
+        case "clear-night":
+          return "<img src=\"assets/img/clear.jpg\" alt=\"clear night\" title=\"clear night\">";
           break;
 
         case "sun":
@@ -333,12 +348,20 @@ function () {
     set: function set(newLng) {
       this._lng = newLng;
     }
+  }, {
+    key: "place",
+    get: function get() {
+      return this._place;
+    },
+    set: function set(newPlace) {
+      this._place = newPlace;
+    }
   }]);
 
   return Weather;
 }();
 
-var myWeather = new Weather("52.520008", "13.404954");
+var myWeather = new Weather("Berlin", "52.520008", "13.404954");
 
 /***/ }),
 
