@@ -168,7 +168,8 @@ class Weather {
       apparentTemperature,
       precipProbability,
       windBearing,
-      windSpeed
+      windSpeed,
+      windGust
     } = data;
     const container = document.querySelector("#currentWeather");
     container.innerHTML = summary;
@@ -188,7 +189,7 @@ class Weather {
     const windContainer = document.querySelector("#wind");
     windContainer.innerHTML = `wind: ${this.getDirection(
       windBearing
-    )} ${this.getBeaufort(windSpeed)}`;
+    )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
     const imageContainer = document.querySelector("#todayImage");
     imageContainer.innerHTML = this.getImage(icon);
   }

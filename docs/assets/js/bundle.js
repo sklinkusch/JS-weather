@@ -286,7 +286,8 @@ function () {
           apparentTemperature = data.apparentTemperature,
           precipProbability = data.precipProbability,
           windBearing = data.windBearing,
-          windSpeed = data.windSpeed;
+          windSpeed = data.windSpeed,
+          windGust = data.windGust;
       var container = document.querySelector("#currentWeather");
       container.innerHTML = summary;
       var temperatureContainer = document.querySelector("#currentTemp");
@@ -299,7 +300,7 @@ function () {
       var pressureContainer = document.querySelector("#currentPressure");
       pressureContainer.innerHTML = "air pressure: ".concat(pressure, " mbar");
       var windContainer = document.querySelector("#wind");
-      windContainer.innerHTML = "wind: ".concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed));
+      windContainer.innerHTML = "wind: ".concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")");
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }
