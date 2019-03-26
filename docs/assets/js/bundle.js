@@ -230,6 +230,12 @@ function () {
             _this.lng = "151.2";
             break;
 
+          case "tokyo":
+            _this.place = "Tokyo";
+            _this.lat = "35.683889";
+            _this.lng = "139.774444";
+            break;
+
           case "toronto":
             _this.place = "Toronto";
             _this.lat = "43.66135";
