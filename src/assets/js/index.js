@@ -18,6 +18,11 @@ class Weather {
           this.lat = "52.520008";
           this.lng = "13.404954";
           break;
+        case "bangkok":
+          this.place = "Bangkok";
+          this.lat = "13.75";
+          this.lng = "100.516667";
+          break;
         case "beijing":
           this.place = "Beijing";
           this.lat = "39.933333";

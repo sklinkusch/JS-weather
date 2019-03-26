@@ -134,6 +134,12 @@ function () {
             _this.lng = "13.404954";
             break;
 
+          case "bangkok":
+            _this.place = "Bangkok";
+            _this.lat = "13.75";
+            _this.lng = "100.516667";
+            break;
+
           case "beijing":
             _this.place = "Beijing";
             _this.lat = "39.933333";
