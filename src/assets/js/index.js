@@ -48,6 +48,11 @@ class Weather {
           this.lat = "41.883333";
           this.lng = "12.483333";
           break;
+        case "sydney":
+          this.place = "Sydney";
+          this.lat = "-33.85";
+          this.lng = "151.2";
+          break;
         case "toronto":
           this.place = "Toronto";
           this.lat = "43.66135";

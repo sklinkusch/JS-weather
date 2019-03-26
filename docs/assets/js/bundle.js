@@ -170,6 +170,12 @@ function () {
             _this.lng = "12.483333";
             break;
 
+          case "sydney":
+            _this.place = "Sydney";
+            _this.lat = "-33.85";
+            _this.lng = "151.2";
+            break;
+
           case "toronto":
             _this.place = "Toronto";
             _this.lat = "43.66135";
