@@ -15,6 +15,7 @@ class Weather {
       const collectionOfPlaces = {
         berlin: "Berlin",
         anchorage: "Anchorage",
+        bamako: "Bamako",
         bangkok: "Bangkok",
         beijing: "Beijing",
         cairo: "Cairo",
@@ -39,6 +40,7 @@ class Weather {
       const collectionOfLats = {
         berlin: "52.520008",
         anchorage: "61.216667",
+        bamako: "12.645833",
         bangkok: "13.75",
         beijing: "39.933333",
         cairo: "30.056111",
@@ -63,6 +65,7 @@ class Weather {
       const collectionOfLngs = {
         berlin: "13.404954",
         anchorage: "-149.883333",
+        bamako: "-7.992222",
         bangkok: "100.516667",
         beijing: "116.383333",
         cairo: "31.239444",
