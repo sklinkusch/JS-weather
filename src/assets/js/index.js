@@ -129,6 +129,9 @@ class Weather {
       case "fog":
         return `<img src="assets/img/fog.jpg" alt="fog" title="fog">`;
         break;
+      case "wind":
+        return `<img src="assets/img/wind.jpg" alt="wind" title="wind">`;
+        break;
     }
   }
   getPercent(value) {
