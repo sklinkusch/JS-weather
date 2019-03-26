@@ -41,6 +41,7 @@ class Weather {
         sydney: "Sydney",
         tokyo: "Tokyo",
         toronto: "Toronto",
+        warsaw: "Warsaw",
         yaren: "Yaren"
       };
       const collectionOfLats = {
@@ -72,6 +73,7 @@ class Weather {
         sydney: "-33.85",
         tokyo: "35.683889",
         toronto: "43.66135",
+        warsaw: "52.216667",
         yaren: "-0.543425"
       };
       const collectionOfLngs = {
@@ -103,6 +105,7 @@ class Weather {
         sydney: "151.2",
         tokyo: "139.774444",
         toronto: "-79.383087",
+        warsaw: "21.033333",
         yaren: "166.919608"
       };
       this.place = collectionOfPlaces[myValue];
