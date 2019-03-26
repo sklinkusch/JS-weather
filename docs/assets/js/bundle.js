@@ -169,6 +169,12 @@ function () {
             _this.lat = "41.883333";
             _this.lng = "12.483333";
             break;
+
+          case "toronto":
+            _this.place = "Toronto";
+            _this.lat = "43.66135";
+            _this.lng = "-79.383087";
+            break;
         }
 
         _this.getData();
