@@ -48,6 +48,11 @@ class Weather {
           this.lat = "27.716667";
           this.lng = "85.316667";
           break;
+        case "kinshasa":
+          this.place = "Kinshasa";
+          this.lat = "-4.331667";
+          this.lng = "15.313889";
+          break;
         case "lapaz":
           this.place = "La Paz";
           this.lat = "-16.494167";

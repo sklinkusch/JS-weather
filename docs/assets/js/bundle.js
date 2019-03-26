@@ -170,6 +170,12 @@ function () {
             _this.lng = "85.316667";
             break;
 
+          case "kinshasa":
+            _this.place = "Kinshasa";
+            _this.lat = "-4.331667";
+            _this.lng = "15.313889";
+            break;
+
           case "lapaz":
             _this.place = "La Paz";
             _this.lat = "-16.494167";
