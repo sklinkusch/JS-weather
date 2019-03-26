@@ -75,7 +75,11 @@ class Weather {
   }
   getCelsius(fahrenheit) {
     const celsius = ((fahrenheit - 32) * 5) / 9;
-    return `${celsius.toFixed(0)} °C`;
+    if (celsius.toFixed(0) == "-0") {
+      return `${(-1 * celsius).toFixed(0)} °C`;
+    } else {
+      return `${celsius.toFixed(0)} °C`;
+    }
   }
   getData() {
     const secret_key = "ce21c715df0406faa728eb66e0d41cd7";
