@@ -164,6 +164,12 @@ function () {
             _this.lng = "-0.11832";
             break;
 
+          case "mexico":
+            _this.place = "Mexico City";
+            _this.lat = "19.419444";
+            _this.lng = "-99.145556";
+            break;
+
           case "paris":
             _this.place = "Paris";
             _this.lat = "48.856667";
