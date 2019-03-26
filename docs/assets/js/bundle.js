@@ -235,6 +235,12 @@ function () {
             _this.lat = "43.66135";
             _this.lng = "-79.383087";
             break;
+
+          case "yaren":
+            _this.place = "Yaren";
+            _this.lat = "-0.543425";
+            _this.lng = "166.919608";
+            break;
         }
 
         _this.getData();

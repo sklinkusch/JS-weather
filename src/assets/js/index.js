@@ -103,6 +103,11 @@ class Weather {
           this.lat = "43.66135";
           this.lng = "-79.383087";
           break;
+        case "yaren":
+          this.place = "Yaren";
+          this.lat = "-0.543425";
+          this.lng = "166.919608";
+          break;
       }
       this.getData();
     });
