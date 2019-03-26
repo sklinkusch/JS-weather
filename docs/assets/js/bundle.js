@@ -255,16 +255,21 @@ function () {
         var maxCont = document.querySelector("#high-".concat(i));
         var minCont = document.querySelector("#low-".concat(i));
         var precCont = document.querySelector("#prec-".concat(i));
+        var windCont = document.querySelector("#wind-".concat(i));
         var icon = day.icon,
             summary = day.summary,
             temperatureMax = day.temperatureMax,
             temperatureMin = day.temperatureMin,
-            precipProbability = day.precipProbability;
+            precipProbability = day.precipProbability,
+            windBearing = day.windBearing,
+            windSpeed = day.windSpeed,
+            windGust = day.windGust;
         imgCont.innerHTML = _this2.getImage(icon);
         sumCont.innerHTML = summary;
         maxCont.innerHTML = "maximum: ".concat(_this2.getCelsius(temperatureMax));
         minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
         precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
+        windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")}");
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
@@ -319,31 +324,31 @@ function () {
     key: "getBeaufort",
     value: function getBeaufort(speed) {
       if (speed <= 1) {
-        return "0 Beaufort";
+        return "0 Bft";
       } else if (speed <= 3) {
-        return "1 Beaufort";
+        return "1 Bft";
       } else if (speed <= 7) {
-        return "2 Beaufort";
+        return "2 Bft";
       } else if (speed <= 12) {
-        return "3 Beaufort";
+        return "3 Bft";
       } else if (speed <= 18) {
-        return "4 Beaufort";
+        return "4 Bft";
       } else if (speed <= 24) {
-        return "5 Beaufort";
+        return "5 Bft";
       } else if (speed <= 31) {
-        return "6 Beaufort";
+        return "6 Bft";
       } else if (speed <= 38) {
-        return "7 Beaufort";
+        return "7 Bft";
       } else if (speed <= 46) {
-        return "8 Beaufort";
+        return "8 Bft";
       } else if (speed <= 54) {
-        return "9 Beaufort";
+        return "9 Bft";
       } else if (speed <= 63) {
-        return "10 Beaufort";
+        return "10 Bft";
       } else if (speed <= 72) {
-        return "11 Beaufort";
+        return "11 Bft";
       } else {
-        return "12 Beaufort";
+        return "12 Bft";
       }
     }
   }, {
@@ -357,8 +362,7 @@ function () {
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data);
-
+        // console.log(data);
         _this3.evalData(data);
       }).catch(function (error) {
         return console.log(error);

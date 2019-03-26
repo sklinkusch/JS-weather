@@ -133,12 +133,16 @@ class Weather {
       const maxCont = document.querySelector(`#high-${i}`);
       const minCont = document.querySelector(`#low-${i}`);
       const precCont = document.querySelector(`#prec-${i}`);
+      const windCont = document.querySelector(`#wind-${i}`);
       const {
         icon,
         summary,
         temperatureMax,
         temperatureMin,
-        precipProbability
+        precipProbability,
+        windBearing,
+        windSpeed,
+        windGust
       } = day;
       imgCont.innerHTML = this.getImage(icon);
       sumCont.innerHTML = summary;
@@ -147,6 +151,11 @@ class Weather {
       precCont.innerHTML = `precipitation probability: ${this.getPercent(
         precipProbability
       )}`;
+      windCont.innerHTML = `wind: ${this.getDirection(
+        windBearing
+      )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(
+        windGust
+      )})}`;
       if (i != 0 && i != 1) {
         const currentDate = new Date(
           new Date().getTime() + i * 24 * 60 * 60 * 1000
@@ -203,31 +212,31 @@ class Weather {
   }
   getBeaufort(speed) {
     if (speed <= 1) {
-      return "0 Beaufort";
+      return "0 Bft";
     } else if (speed <= 3) {
-      return "1 Beaufort";
+      return "1 Bft";
     } else if (speed <= 7) {
-      return "2 Beaufort";
+      return "2 Bft";
     } else if (speed <= 12) {
-      return "3 Beaufort";
+      return "3 Bft";
     } else if (speed <= 18) {
-      return "4 Beaufort";
+      return "4 Bft";
     } else if (speed <= 24) {
-      return "5 Beaufort";
+      return "5 Bft";
     } else if (speed <= 31) {
-      return "6 Beaufort";
+      return "6 Bft";
     } else if (speed <= 38) {
-      return "7 Beaufort";
+      return "7 Bft";
     } else if (speed <= 46) {
-      return "8 Beaufort";
+      return "8 Bft";
     } else if (speed <= 54) {
-      return "9 Beaufort";
+      return "9 Bft";
     } else if (speed <= 63) {
-      return "10 Beaufort";
+      return "10 Bft";
     } else if (speed <= 72) {
-      return "11 Beaufort";
+      return "11 Bft";
     } else {
-      return "12 Beaufort";
+      return "12 Bft";
     }
   }
   getData() {
@@ -239,7 +248,7 @@ class Weather {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.evalData(data);
       })
       .catch(error => console.log(error));
