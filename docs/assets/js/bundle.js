@@ -269,7 +269,7 @@ function () {
         maxCont.innerHTML = "maximum: ".concat(_this2.getCelsius(temperatureMax));
         minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
         precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
-        windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")}");
+        windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")");
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);

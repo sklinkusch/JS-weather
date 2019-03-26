@@ -153,9 +153,7 @@ class Weather {
       )}`;
       windCont.innerHTML = `wind: ${this.getDirection(
         windBearing
-      )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(
-        windGust
-      )})}`;
+      )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
       if (i != 0 && i != 1) {
         const currentDate = new Date(
           new Date().getTime() + i * 24 * 60 * 60 * 1000
