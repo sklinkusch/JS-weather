@@ -284,7 +284,9 @@ function () {
           temperature = data.temperature,
           pressure = data.pressure,
           apparentTemperature = data.apparentTemperature,
-          precipProbability = data.precipProbability;
+          precipProbability = data.precipProbability,
+          windBearing = data.windBearing,
+          windSpeed = data.windSpeed;
       var container = document.querySelector("#currentWeather");
       container.innerHTML = summary;
       var temperatureContainer = document.querySelector("#currentTemp");

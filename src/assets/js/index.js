@@ -166,7 +166,9 @@ class Weather {
       temperature,
       pressure,
       apparentTemperature,
-      precipProbability
+      precipProbability,
+      windBearing,
+      windSpeed
     } = data;
     const container = document.querySelector("#currentWeather");
     container.innerHTML = summary;
