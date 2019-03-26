@@ -282,8 +282,8 @@ function () {
       var _this3 = this;
 
       var secret_key = "ce21c715df0406faa728eb66e0d41cd7";
-      var proxy = "https://cors-anywhere.herokuapp.com/";
-      var url = "https://api.darksky.net/forecast/".concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
+      var proxy = "https://cors-anywhere.herokuapp.com";
+      var url = "".concat(proxy, "/https://api.darksky.net/forecast/").concat(secret_key, "/").concat(this.lat, ",").concat(this.lng);
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {

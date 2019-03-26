@@ -151,10 +151,10 @@ class Weather {
   }
   getData() {
     const secret_key = "ce21c715df0406faa728eb66e0d41cd7";
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-    const url = `https://api.darksky.net/forecast/${secret_key}/${this.lat},${
-      this.lng
-    }`;
+    const proxy = "https://cors-anywhere.herokuapp.com";
+    const url = `${proxy}/https://api.darksky.net/forecast/${secret_key}/${
+      this.lat
+    },${this.lng}`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
