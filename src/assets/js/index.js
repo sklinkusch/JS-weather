@@ -12,108 +12,75 @@ class Weather {
     const dropdown = document.querySelector("#placeselect");
     dropdown.addEventListener("input", event => {
       const myValue = event.target.value;
-      switch (myValue) {
-        case "berlin":
-          this.place = "Berlin";
-          this.lat = "52.520008";
-          this.lng = "13.404954";
-          break;
-        case "anchorage":
-          this.place = "Anchorage";
-          this.lat = "61.216667";
-          this.lng = "-149.883333";
-          break;
-        case "bangkok":
-          this.place = "Bangkok";
-          this.lat = "13.75";
-          this.lng = "100.516667";
-          break;
-        case "beijing":
-          this.place = "Beijing";
-          this.lat = "39.933333";
-          this.lng = "116.383333";
-          break;
-        case "cairo":
-          this.place = "Cairo";
-          this.lat = "30.056111";
-          this.lng = "31.239444";
-          break;
-        case "capetown":
-          this.place = "Cape Town";
-          this.lat = "-33.922667";
-          this.lng = "18.416689";
-          break;
-        case "kathmandu":
-          this.place = "Kathmandu";
-          this.lat = "27.716667";
-          this.lng = "85.316667";
-          break;
-        case "kinshasa":
-          this.place = "Kinshasa";
-          this.lat = "-4.331667";
-          this.lng = "15.313889";
-          break;
-        case "lapaz":
-          this.place = "La Paz";
-          this.lat = "-16.494167";
-          this.lng = "-68.1475";
-          break;
-        case "london":
-          this.place = "London";
-          this.lat = "51.50939";
-          this.lng = "-0.11832";
-          break;
-        case "mexico":
-          this.place = "Mexico City";
-          this.lat = "19.419444";
-          this.lng = "-99.145556";
-          break;
-        case "paris":
-          this.place = "Paris";
-          this.lat = "48.856667";
-          this.lng = "2.351667";
-          break;
-        case "newyork":
-          this.place = "New York City";
-          this.lat = "40.712778";
-          this.lng = "-74.005833";
-          break;
-        case "rio":
-          this.place = "Rio de Janeiro";
-          this.lat = "-22.908333";
-          this.lng = "-43.196389";
-          break;
-        case "riyadh":
-          this.place = "Riyadh";
-          this.lat = "24.65";
-          this.lng = "46.71";
-          break;
-        case "rome":
-          this.place = "Rome";
-          this.lat = "41.883333";
-          this.lng = "12.483333";
-          break;
-        case "sydney":
-          this.place = "Sydney";
-          this.lat = "-33.85";
-          this.lng = "151.2";
-          break;
-        case "tokyo":
-          this.place = "Tokyo";
-          this.lat = "35.683889";
-          this.lng = "139.774444";
-          break;
-        case "toronto":
-          this.place = "Toronto";
-          this.lat = "43.66135";
-          this.lng = "-79.383087";
-          break;
-        case "yaren":
-          this.place = "Yaren";
-          this.lat = "-0.543425";
-          this.lng = "166.919608";
-          break;
-      }
+      const collectionOfPlaces = {
+        berlin: "Berlin",
+        anchorage: "Anchorage",
+        bangkok: "Bangkok",
+        beijing: "Beijing",
+        cairo: "Cairo",
+        capetown: "Cape Town",
+        kathmandu: "Kathmandu",
+        kinshasa: "Kinshasa",
+        lapaz: "La Paz",
+        london: "London",
+        mexico: "Mexico City",
+        newyork: "New York City",
+        paris: "Paris",
+        rio: "Rio de Janeiro",
+        riyadh: "Riyadh",
+        rome: "Rome",
+        sydney: "Sydney",
+        tokyo: "Tokyo",
+        toronto: "Toronto",
+        yaren: "Yaren"
+      };
+      const collectionOfLats = {
+        berlin: "52.520008",
+        anchorage: "61.216667",
+        bangkok: "13.75",
+        beijing: "39.933333",
+        cairo: "30.056111",
+        capetown: "-33.922667",
+        kathmandu: "27.716667",
+        kinshasa: "-4.331667",
+        lapaz: "-16.494167",
+        london: "51.50939",
+        mexico: "19.419444",
+        newyork: "40.712778",
+        paris: "48.856667",
+        rio: "-22.908333",
+        riyadh: "24.65",
+        rome: "41.883333",
+        sydney: "-33.85",
+        tokyo: "35.683889",
+        toronto: "43.66135",
+        yaren: "-0.543425"
+      };
+      const collectionOfLngs = {
+        berlin: "13.404954",
+        anchorage: "-149.883333",
+        bangkok: "100.516667",
+        beijing: "116.383333",
+        cairo: "31.239444",
+        capetown: "18.416689",
+        kathmandu: "85.316667",
+        kinshasa: "15.313889",
+        lapaz: "-68.1475",
+        london: "-0.11832",
+        mexico: "-99.145556",
+        newyork: "-74.005833",
+        paris: "2.351667",
+        rio: "-43.196389",
+        riyadh: "46.71",
+        rome: "12.483333",
+        sydney: "151.2",
+        tokyo: "139.774444",
+        toronto: "-79.383087",
+        yaren: "166.919608"
+      };
+      this.place = collectionOfPlaces[myValue];
+      this.lat = collectionOfLats[myValue];
+      this.lng = collectionOfLngs[myValue];
       this.getData();
     });
   }
