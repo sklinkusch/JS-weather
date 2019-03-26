@@ -298,6 +298,8 @@ function () {
       precipContainer.innerHTML = "precipitation probability: ".concat(this.getPercent(precipProbability));
       var pressureContainer = document.querySelector("#currentPressure");
       pressureContainer.innerHTML = "air pressure: ".concat(pressure, " mbar");
+      var windContainer = document.querySelector("#wind");
+      windContainer.innerHTML = "wind: ".concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed));
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }
@@ -310,6 +312,37 @@ function () {
         return "".concat((-1 * celsius).toFixed(0), " \xB0C");
       } else {
         return "".concat(celsius.toFixed(0), " \xB0C");
+      }
+    }
+  }, {
+    key: "getBeaufort",
+    value: function getBeaufort(speed) {
+      if (speed <= 1) {
+        return "0 Beaufort";
+      } else if (speed <= 3) {
+        return "1 Beaufort";
+      } else if (speed <= 7) {
+        return "2 Beaufort";
+      } else if (speed <= 12) {
+        return "3 Beaufort";
+      } else if (speed <= 18) {
+        return "4 Beaufort";
+      } else if (speed <= 24) {
+        return "5 Beaufort";
+      } else if (speed <= 31) {
+        return "6 Beaufort";
+      } else if (speed <= 38) {
+        return "7 Beaufort";
+      } else if (speed <= 46) {
+        return "8 Beaufort";
+      } else if (speed <= 54) {
+        return "9 Beaufort";
+      } else if (speed <= 63) {
+        return "10 Beaufort";
+      } else if (speed <= 72) {
+        return "11 Beaufort";
+      } else {
+        return "12 Beaufort";
       }
     }
   }, {
@@ -329,6 +362,47 @@ function () {
       }).catch(function (error) {
         return console.log(error);
       });
+    }
+  }, {
+    key: "getDirection",
+    value: function getDirection(angle) {
+      if (angle == undefined) {
+        return "";
+      } else if (angle >= 0 && angle < 15) {
+        return "N";
+      } else if (angle >= 15 && angle < 30) {
+        return "NNE";
+      } else if (angle >= 30 && angle < 60) {
+        return "NE";
+      } else if (angle >= 60 && angle < 75) {
+        return "ENE";
+      } else if (angle >= 75 && angle < 105) {
+        return "E";
+      } else if (angle >= 105 && angle < 120) {
+        return "ESE";
+      } else if (angle >= 120 && angle < 150) {
+        return "SE";
+      } else if (angle >= 150 && angle < 165) {
+        return "SSE";
+      } else if (angle >= 165 && angle < 195) {
+        return "S";
+      } else if (angle >= 195 && angle < 210) {
+        return "SSW";
+      } else if (angle >= 210 && angle < 240) {
+        return "SW";
+      } else if (angle >= 240 && angle < 255) {
+        return "WSW";
+      } else if (angle >= 255 && angle < 285) {
+        return "W";
+      } else if (angle >= 285 && angle < 300) {
+        return "WNW";
+      } else if (angle >= 300 && angle < 330) {
+        return "NW";
+      } else if (angle >= 330 && angle < 345) {
+        return "NNW";
+      } else if (angle >= 345) {
+        return "N";
+      }
     }
   }, {
     key: "getImage",
