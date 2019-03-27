@@ -271,6 +271,7 @@ function () {
         var minCont = document.querySelector("#low-".concat(i));
         var precCont = document.querySelector("#prec-".concat(i));
         var windCont = document.querySelector("#wind-".concat(i));
+        var humidCont = document.querySelector("#humid-".concat(i));
         var icon = day.icon,
             summary = day.summary,
             temperatureMax = day.temperatureMax,
@@ -278,13 +279,15 @@ function () {
             precipProbability = day.precipProbability,
             windBearing = day.windBearing,
             windSpeed = day.windSpeed,
-            windGust = day.windGust;
+            windGust = day.windGust,
+            humidity = day.humidity;
         imgCont.innerHTML = _this2.getImage(icon);
         sumCont.innerHTML = summary;
         maxCont.innerHTML = "maximum: ".concat(_this2.getCelsius(temperatureMax));
         minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
         precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
         windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")");
+        humidCont.innerHTML = "relative humidity: ".concat(100 * humidity, " %");
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
@@ -380,8 +383,7 @@ function () {
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data);
-
+        // console.log(data);
         _this3.evalData(data);
       }).catch(function (error) {
         return console.log(error);

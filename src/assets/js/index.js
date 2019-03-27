@@ -149,6 +149,7 @@ class Weather {
       const minCont = document.querySelector(`#low-${i}`);
       const precCont = document.querySelector(`#prec-${i}`);
       const windCont = document.querySelector(`#wind-${i}`);
+      const humidCont = document.querySelector(`#humid-${i}`);
       const {
         icon,
         summary,
@@ -157,7 +158,8 @@ class Weather {
         precipProbability,
         windBearing,
         windSpeed,
-        windGust
+        windGust,
+        humidity
       } = day;
       imgCont.innerHTML = this.getImage(icon);
       sumCont.innerHTML = summary;
@@ -169,6 +171,7 @@ class Weather {
       windCont.innerHTML = `wind: ${this.getDirection(
         windBearing
       )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
+      humidCont.innerHTML = `relative humidity: ${100 * humidity} %`;
       if (i != 0 && i != 1) {
         const currentDate = new Date(
           new Date().getTime() + i * 24 * 60 * 60 * 1000
@@ -264,7 +267,7 @@ class Weather {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.evalData(data);
       })
       .catch(error => console.log(error));
