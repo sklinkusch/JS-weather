@@ -203,29 +203,18 @@ class Weather {
       windGust,
       humidity
     } = data;
-    const container = document.querySelector("#currentWeather");
-    container.innerHTML = summary;
-    const temperatureContainer = document.querySelector("#currentTemp");
-    const tempC = this.getCelsius(temperature);
-    temperatureContainer.innerHTML = `current temperature: ${tempC}`;
-    const feelsContainer = document.querySelector("#feels");
-    feelsContainer.innerHTML = `feels like: ${this.getCelsius(
-      apparentTemperature
-    )}`;
-    const precipContainer = document.querySelector("#precip");
-    precipContainer.innerHTML = `precipitation probability: ${this.getPercent(
-      precipProbability
-    )}`;
-    const pressureContainer = document.querySelector("#currentPressure");
-    pressureContainer.innerHTML = `air pressure: ${pressure} mbar`;
-    const windContainer = document.querySelector("#wind");
-    windContainer.innerHTML = `wind: ${this.getDirection(
-      windBearing
-    )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
-    const HumidContainer = document.querySelector("#curHumid");
-    HumidContainer.innerHTML = `relative humidity: ${(100 * humidity).toFixed(
-      0
-    )} %`;
+    const container = document.querySelector("#current");
+    container.innerHTML = `
+    <li>${summary}</li>
+    <li>current temperature: ${this.getCelsius(temperature)}</li>
+    <li>feels like: ${this.getCelsius(apparentTemperature)}</li>
+    <li>precipitation probability: ${this.getPercent(precipProbability)}</li>
+    <li>air pressure: ${pressure} mbar</li>
+    <li>wind: ${this.getDirection(windBearing)} ${this.getBeaufort(
+      windSpeed
+    )} (gusts: ${this.getBeaufort(windGust)})</li>
+    <li>relative humidity: ${this.getPercent(humidity)}
+    `;
     const imageContainer = document.querySelector("#todayImage");
     imageContainer.innerHTML = this.getImage(icon);
   }

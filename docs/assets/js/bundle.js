@@ -312,21 +312,8 @@ function () {
           windSpeed = data.windSpeed,
           windGust = data.windGust,
           humidity = data.humidity;
-      var container = document.querySelector("#currentWeather");
-      container.innerHTML = summary;
-      var temperatureContainer = document.querySelector("#currentTemp");
-      var tempC = this.getCelsius(temperature);
-      temperatureContainer.innerHTML = "current temperature: ".concat(tempC);
-      var feelsContainer = document.querySelector("#feels");
-      feelsContainer.innerHTML = "feels like: ".concat(this.getCelsius(apparentTemperature));
-      var precipContainer = document.querySelector("#precip");
-      precipContainer.innerHTML = "precipitation probability: ".concat(this.getPercent(precipProbability));
-      var pressureContainer = document.querySelector("#currentPressure");
-      pressureContainer.innerHTML = "air pressure: ".concat(pressure, " mbar");
-      var windContainer = document.querySelector("#wind");
-      windContainer.innerHTML = "wind: ".concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")");
-      var HumidContainer = document.querySelector("#curHumid");
-      HumidContainer.innerHTML = "relative humidity: ".concat((100 * humidity).toFixed(0), " %");
+      var container = document.querySelector("#current");
+      container.innerHTML = "\n    <li>".concat(summary, "</li>\n    <li>current temperature: ").concat(this.getCelsius(temperature), "</li>\n    <li>feels like: ").concat(this.getCelsius(apparentTemperature), "</li>\n    <li>precipitation probability: ").concat(this.getPercent(precipProbability), "</li>\n    <li>air pressure: ").concat(pressure, " mbar</li>\n    <li>wind: ").concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")</li>\n    <li>relative humidity: ").concat(this.getPercent(humidity), "\n    ");
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }
