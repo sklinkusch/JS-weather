@@ -191,7 +191,8 @@ class Weather {
       precipProbability,
       windBearing,
       windSpeed,
-      windGust
+      windGust,
+      humidity
     } = data;
     const container = document.querySelector("#currentWeather");
     container.innerHTML = summary;
@@ -212,6 +213,8 @@ class Weather {
     windContainer.innerHTML = `wind: ${this.getDirection(
       windBearing
     )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
+    const HumidContainer = document.querySelector("#curHumid");
+    HumidContainer.innerHTML = `relative humidity: ${100 * humidity} %`;
     const imageContainer = document.querySelector("#todayImage");
     imageContainer.innerHTML = this.getImage(icon);
   }
@@ -261,7 +264,7 @@ class Weather {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
+        console.log(data);
         this.evalData(data);
       })
       .catch(error => console.log(error));

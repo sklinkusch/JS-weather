@@ -307,7 +307,8 @@ function () {
           precipProbability = data.precipProbability,
           windBearing = data.windBearing,
           windSpeed = data.windSpeed,
-          windGust = data.windGust;
+          windGust = data.windGust,
+          humidity = data.humidity;
       var container = document.querySelector("#currentWeather");
       container.innerHTML = summary;
       var temperatureContainer = document.querySelector("#currentTemp");
@@ -321,6 +322,8 @@ function () {
       pressureContainer.innerHTML = "air pressure: ".concat(pressure, " mbar");
       var windContainer = document.querySelector("#wind");
       windContainer.innerHTML = "wind: ".concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")");
+      var HumidContainer = document.querySelector("#curHumid");
+      HumidContainer.innerHTML = "relative humidity: ".concat(100 * humidity, " %");
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }
@@ -377,7 +380,8 @@ function () {
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        // console.log(data);
+        console.log(data);
+
         _this3.evalData(data);
       }).catch(function (error) {
         return console.log(error);
