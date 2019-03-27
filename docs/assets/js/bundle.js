@@ -296,7 +296,7 @@ function () {
         minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
         precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
         windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")");
-        humidCont.innerHTML = "relative humidity: ".concat(100 * humidity, " %");
+        humidCont.innerHTML = "relative humidity: ".concat((100 * humidity).toFixed(0), " %");
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
@@ -335,7 +335,7 @@ function () {
       var windContainer = document.querySelector("#wind");
       windContainer.innerHTML = "wind: ".concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")");
       var HumidContainer = document.querySelector("#curHumid");
-      HumidContainer.innerHTML = "relative humidity: ".concat(100 * humidity, " %");
+      HumidContainer.innerHTML = "relative humidity: ".concat((100 * humidity).toFixed(0), " %");
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }

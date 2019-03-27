@@ -180,7 +180,9 @@ class Weather {
       windCont.innerHTML = `wind: ${this.getDirection(
         windBearing
       )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
-      humidCont.innerHTML = `relative humidity: ${100 * humidity} %`;
+      humidCont.innerHTML = `relative humidity: ${(100 * humidity).toFixed(
+        0
+      )} %`;
       if (i != 0 && i != 1) {
         const currentDate = new Date(
           new Date().getTime() + i * 24 * 60 * 60 * 1000
@@ -226,7 +228,9 @@ class Weather {
       windBearing
     )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
     const HumidContainer = document.querySelector("#curHumid");
-    HumidContainer.innerHTML = `relative humidity: ${100 * humidity} %`;
+    HumidContainer.innerHTML = `relative humidity: ${(100 * humidity).toFixed(
+      0
+    )} %`;
     const imageContainer = document.querySelector("#todayImage");
     imageContainer.innerHTML = this.getImage(icon);
   }
