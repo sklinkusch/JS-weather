@@ -311,13 +311,15 @@ function () {
           temperature = data.temperature,
           pressure = data.pressure,
           apparentTemperature = data.apparentTemperature,
+          cloudCover = data.cloudCover,
+          uvIndex = data.uvIndex,
           precipProbability = data.precipProbability,
           windBearing = data.windBearing,
           windSpeed = data.windSpeed,
           windGust = data.windGust,
           humidity = data.humidity;
       var container = document.querySelector("#current");
-      container.innerHTML = "\n    <li>".concat(summary, "</li>\n    <li>current temperature: ").concat(this.getCelsius(temperature), "</li>\n    <li>feels like: ").concat(this.getCelsius(apparentTemperature), "</li>\n    <li>precipitation probability: ").concat(this.getPercent(precipProbability), "</li>\n    <li>air pressure: ").concat(pressure, " mbar</li>\n    <li>wind: ").concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")</li>\n    <li>relative humidity: ").concat(this.getPercent(humidity), "\n    ");
+      container.innerHTML = "\n    <li>".concat(summary, "</li>\n    <li>current temperature: ").concat(this.getCelsius(temperature), "</li>\n    <li>feels like: ").concat(this.getCelsius(apparentTemperature), "</li>\n    <li>cloud cover: ").concat(this.getPercent(cloudCover), "</li>\n    <li>precipitation probability: ").concat(this.getPercent(precipProbability), "</li>\n    <li>air pressure: ").concat(pressure, " mbar</li>\n    <li>wind: ").concat(this.getDirection(windBearing), " ").concat(this.getBeaufort(windSpeed), " (gusts: ").concat(this.getBeaufort(windGust), ")</li>\n    <li>relative humidity: ").concat(this.getPercent(humidity), "</li>\n    <li>UV index: ").concat(uvIndex, "</li>\n    ");
       var imageContainer = document.querySelector("#todayImage");
       imageContainer.innerHTML = this.getImage(icon);
     }
@@ -374,8 +376,7 @@ function () {
       fetch(url).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data);
-
+        // console.log(data);
         _this3.evalData(data);
       }).catch(function (error) {
         return console.log(error);

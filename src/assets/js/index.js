@@ -207,6 +207,8 @@ class Weather {
       temperature,
       pressure,
       apparentTemperature,
+      cloudCover,
+      uvIndex,
       precipProbability,
       windBearing,
       windSpeed,
@@ -218,12 +220,14 @@ class Weather {
     <li>${summary}</li>
     <li>current temperature: ${this.getCelsius(temperature)}</li>
     <li>feels like: ${this.getCelsius(apparentTemperature)}</li>
+    <li>cloud cover: ${this.getPercent(cloudCover)}</li>
     <li>precipitation probability: ${this.getPercent(precipProbability)}</li>
     <li>air pressure: ${pressure} mbar</li>
     <li>wind: ${this.getDirection(windBearing)} ${this.getBeaufort(
       windSpeed
     )} (gusts: ${this.getBeaufort(windGust)})</li>
-    <li>relative humidity: ${this.getPercent(humidity)}
+    <li>relative humidity: ${this.getPercent(humidity)}</li>
+    <li>UV index: ${uvIndex}</li>
     `;
     const imageContainer = document.querySelector("#todayImage");
     imageContainer.innerHTML = this.getImage(icon);
@@ -274,7 +278,7 @@ class Weather {
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.evalData(data);
       })
       .catch(error => console.log(error));
