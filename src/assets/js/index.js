@@ -153,13 +153,7 @@ class Weather {
     const date = new Date();
     data.forEach((day, i) => {
       const imgCont = document.querySelector(`#imag-${i}`);
-      const sumCont = document.querySelector(`#summ-${i}`);
-      const maxCont = document.querySelector(`#high-${i}`);
-      const minCont = document.querySelector(`#low-${i}`);
-      const precCont = document.querySelector(`#prec-${i}`);
-      const preciCont = document.querySelector(`#preci-${i}`);
-      const windCont = document.querySelector(`#wind-${i}`);
-      const humidCont = document.querySelector(`#humid-${i}`);
+      const listCont = document.querySelector(`#weather-${i}`);
       const {
         icon,
         summary,
@@ -173,23 +167,17 @@ class Weather {
         humidity
       } = day;
       imgCont.innerHTML = this.getImage(icon);
-      sumCont.innerHTML = summary;
-      maxCont.innerHTML = `maximum: ${this.getCelsius(temperatureMax)}`;
-      minCont.innerHTML = `minimum: ${this.getCelsius(temperatureMin)}`;
-      precCont.innerHTML = `precipitation probability: ${this.getPercent(
-        precipProbability
-      )}`;
-      preciCont.innerHTML = `precipitation: ${(
-        precipIntensity *
-        25.4 *
-        24
-      ).toFixed(2)} mm`;
-      windCont.innerHTML = `wind: ${this.getDirection(
-        windBearing
-      )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;
-      humidCont.innerHTML = `relative humidity: ${(100 * humidity).toFixed(
-        0
-      )} %`;
+      listCont.innerHTML = `
+      <li>${summary}</li>
+      <li>maximum: ${this.getCelsius(temperatureMax)}</li>
+      <li>minimum: ${this.getCelsius(temperatureMin)}</li>
+      <li>precipitation probability: ${this.getPercent(precipProbability)}</li>
+      <li>precipitation: ${(precipIntensity * 25.4 * 24).toFixed(2)} mm</li>
+      <li>wind: ${this.getDirection(windBearing)} ${this.getBeaufort(
+        windSpeed
+      )} (gusts: ${this.getBeaufort(windGust)})</li>
+      <li>relative humidity: ${(humidity * 100).toFixed(0)} %</li>
+      `;
       if (i != 0 && i != 1) {
         const currentDate = new Date(
           new Date().getTime() + i * 24 * 60 * 60 * 1000

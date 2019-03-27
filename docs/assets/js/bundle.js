@@ -275,13 +275,7 @@ function () {
       var date = new Date();
       data.forEach(function (day, i) {
         var imgCont = document.querySelector("#imag-".concat(i));
-        var sumCont = document.querySelector("#summ-".concat(i));
-        var maxCont = document.querySelector("#high-".concat(i));
-        var minCont = document.querySelector("#low-".concat(i));
-        var precCont = document.querySelector("#prec-".concat(i));
-        var preciCont = document.querySelector("#preci-".concat(i));
-        var windCont = document.querySelector("#wind-".concat(i));
-        var humidCont = document.querySelector("#humid-".concat(i));
+        var listCont = document.querySelector("#weather-".concat(i));
         var icon = day.icon,
             summary = day.summary,
             temperatureMax = day.temperatureMax,
@@ -293,13 +287,7 @@ function () {
             windGust = day.windGust,
             humidity = day.humidity;
         imgCont.innerHTML = _this2.getImage(icon);
-        sumCont.innerHTML = summary;
-        maxCont.innerHTML = "maximum: ".concat(_this2.getCelsius(temperatureMax));
-        minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
-        precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
-        preciCont.innerHTML = "precipitation: ".concat((precipIntensity * 25.4 * 24).toFixed(2), " mm");
-        windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")");
-        humidCont.innerHTML = "relative humidity: ".concat((100 * humidity).toFixed(0), " %");
+        listCont.innerHTML = "\n      <li>".concat(summary, "</li>\n      <li>maximum: ").concat(_this2.getCelsius(temperatureMax), "</li>\n      <li>minimum: ").concat(_this2.getCelsius(temperatureMin), "</li>\n      <li>precipitation probability: ").concat(_this2.getPercent(precipProbability), "</li>\n      <li>precipitation: ").concat((precipIntensity * 25.4 * 24).toFixed(2), " mm</li>\n      <li>wind: ").concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")</li>\n      <li>relative humidity: ").concat((humidity * 100).toFixed(0), " %</li>\n      ");
 
         if (i != 0 && i != 1) {
           var currentDate = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000);
