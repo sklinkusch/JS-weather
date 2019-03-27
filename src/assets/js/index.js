@@ -157,6 +157,7 @@ class Weather {
       const maxCont = document.querySelector(`#high-${i}`);
       const minCont = document.querySelector(`#low-${i}`);
       const precCont = document.querySelector(`#prec-${i}`);
+      const preciCont = document.querySelector(`#preci-${i}`);
       const windCont = document.querySelector(`#wind-${i}`);
       const humidCont = document.querySelector(`#humid-${i}`);
       const {
@@ -165,6 +166,7 @@ class Weather {
         temperatureMax,
         temperatureMin,
         precipProbability,
+        precipIntensity,
         windBearing,
         windSpeed,
         windGust,
@@ -177,6 +179,11 @@ class Weather {
       precCont.innerHTML = `precipitation probability: ${this.getPercent(
         precipProbability
       )}`;
+      preciCont.innerHTML = `precipitation: ${(
+        precipIntensity *
+        25.4 *
+        24
+      ).toFixed(2)} mm`;
       windCont.innerHTML = `wind: ${this.getDirection(
         windBearing
       )} ${this.getBeaufort(windSpeed)} (gusts: ${this.getBeaufort(windGust)})`;

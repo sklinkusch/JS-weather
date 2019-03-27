@@ -279,6 +279,7 @@ function () {
         var maxCont = document.querySelector("#high-".concat(i));
         var minCont = document.querySelector("#low-".concat(i));
         var precCont = document.querySelector("#prec-".concat(i));
+        var preciCont = document.querySelector("#preci-".concat(i));
         var windCont = document.querySelector("#wind-".concat(i));
         var humidCont = document.querySelector("#humid-".concat(i));
         var icon = day.icon,
@@ -286,6 +287,7 @@ function () {
             temperatureMax = day.temperatureMax,
             temperatureMin = day.temperatureMin,
             precipProbability = day.precipProbability,
+            precipIntensity = day.precipIntensity,
             windBearing = day.windBearing,
             windSpeed = day.windSpeed,
             windGust = day.windGust,
@@ -295,6 +297,7 @@ function () {
         maxCont.innerHTML = "maximum: ".concat(_this2.getCelsius(temperatureMax));
         minCont.innerHTML = "minimum: ".concat(_this2.getCelsius(temperatureMin));
         precCont.innerHTML = "precipitation probability: ".concat(_this2.getPercent(precipProbability));
+        preciCont.innerHTML = "precipitation: ".concat((precipIntensity * 25.4 * 24).toFixed(2), " mm");
         windCont.innerHTML = "wind: ".concat(_this2.getDirection(windBearing), " ").concat(_this2.getBeaufort(windSpeed), " (gusts: ").concat(_this2.getBeaufort(windGust), ")");
         humidCont.innerHTML = "relative humidity: ".concat((100 * humidity).toFixed(0), " %");
 
